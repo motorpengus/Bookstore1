@@ -1,5 +1,6 @@
 package hh.backend.bookstore.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,17 +16,19 @@ public class Book {
     private String title;
     private String author;
     private double price;
+    @Column(name = "pyear")
     private int year;
+    private String isbn;
 
-    // Default constructor
     public Book() {}
 
     // Constructor with parameters
-    public Book(String title, String author, double price, int year) {
+    public Book(String title, String author,int year , String isbn,double price) {
         this.title = title;
         this.author = author;
-        this.price = price;
         this.year = year;
+        this.isbn = isbn;
+        this.price = price;
     }
 
     // Getters and setters
@@ -68,11 +71,18 @@ public class Book {
     public void setYear(int year) {
         this.year = year;
     }
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     @Override
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + ", year=" + year
-                + "]";
+                + ", isbn=" + isbn + "]";
     }
     
 }
