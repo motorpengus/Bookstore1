@@ -7,25 +7,28 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Book {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
     private String author;
-    private int publicationYear;
-    private String isbn;
     private double price;
+    private int year;
 
+    // Default constructor
     public Book() {}
 
-    public Book(String title, String author, int publicationYear, String isbn, double price) {
+    // Constructor with parameters
+    public Book(String title, String author, double price, int year) {
         this.title = title;
         this.author = author;
-        this.publicationYear = publicationYear;
-        this.isbn = isbn;
         this.price = price;
+        this.year = year;
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -50,22 +53,6 @@ public class Book {
         this.author = author;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
-    }
-
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -73,4 +60,19 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + ", year=" + year
+                + "]";
+    }
+    
 }
