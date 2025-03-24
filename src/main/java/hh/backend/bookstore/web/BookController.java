@@ -1,6 +1,5 @@
 package hh.backend.bookstore.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,15 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.backend.bookstore.domain.Book;
 import hh.backend.bookstore.domain.BookRepository;
+import hh.backend.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
 
-    @Autowired
+    //@Autowired
     private final BookRepository bookRepository;
+    //@Autowired
+    private final CategoryRepository categoryRepository;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
         this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     // Welcome Page
@@ -40,6 +43,8 @@ public class BookController {
     @GetMapping("/addbook")
     public String showAddBookForm(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
+        //System.out.println("categoriat tietokannasta valintalistaa varten" + categoryRepository.findAll());
         return "addbook";
     }
 
